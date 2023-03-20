@@ -54,7 +54,7 @@ En postman generamos un request de tipo POST a la siguiente URL:
 
 Nos dirigimos a la pestaña Body -> raw y seleccionamos formato JSON, se presenta imagen de referencia
 
--> aqui la imagen referenciada
+![Imagen de ejemplo](https://github.com/emirandalutz/technical_test/blob/main/src/main/resources/static/postman_config.jpg)
 
 Dentro del body la estructura de la información debe ser como el siguiente ejemplo:
 
