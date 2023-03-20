@@ -50,7 +50,7 @@ $ mvn spring-boot:run
 ***
 En postman generamos un request de tipo POST a la siguiente URL:
 
-    localhost:8080/register
+(localhost:8080/register)
 
 Nos dirigimos a la pestaña Body -> raw y seleccionamos formato JSON, se presenta imagen de referencia
 
@@ -113,3 +113,27 @@ La API entregara un resultado en JSON que podra ser consumido si es necesario.
     "active": true
 }
 ```
+##  Bonus
+
+### Carga de base de datos H2
+
+Para la creación de la base de datos y sus tablas se han dispuesto los script iniciales
+en un archivo llamado "schema.sql" que se encuentra en el directorio src->main->resources.
+
+![Propiedad de BD H2](https://github.com/emirandalutz/technical_test/blob/main/src/main/resources/static/properties_bd.jpg)
+
+Este script es ejecutado al iniciar la aplicación.
+
+### Conexión a consola de administración de base de datos
+
+Una vez iniciada la aplicación se podra acceder a la consola de base de datos en memoria
+con el fin de verificar las inserciones de la aplicación. Se puede acceder a traves de la siguiente URL:
+
+(http://localhost:8080/h2-console/)
+
+![Consola H2](https://github.com/emirandalutz/technical_test/blob/main/src/main/resources/static/h2_console.jpg)
+
+Se especifica la base de datos que es "test", los credenciales de acceso son:
+
+  * User Name: test
+  * Password: password
