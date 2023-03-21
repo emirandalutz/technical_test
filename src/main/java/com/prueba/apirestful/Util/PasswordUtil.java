@@ -13,9 +13,4 @@ public class PasswordUtil {
         return new BCryptPasswordEncoder();
     }
 
-    public boolean validatePasswordEncode(String password, String passwordDB){
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        boolean matchPassword = bCryptPasswordEncoder.matches(password,passwordDB);
-        return matchPassword;
-    }
 }

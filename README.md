@@ -3,9 +3,9 @@
 2. [Tecnología](#tecnologia)
 3. [Instalación](#instalacion)
 4. [Pruebas](#pruebas) 
-5. [Bonus](#bonus)
+5. [Administracion Base de datos](#administracion_Base_de_datos)
 
-### Informacion General
+## Informacion General
 ***
 Este proyecto se ha desarrollado como un microservicio encargado de simular 
 la acción de registrarse en una plataforma.
@@ -116,9 +116,10 @@ La API entregara un resultado en JSON que podra ser consumido si es necesario.
     "active": true
 }
 ```
-##  Bonus
-***
+## Administracion Base de datos
+
 ### Carga de base de datos H2
+***
 
 Para la creación de la base de datos y sus tablas se han dispuesto los script iniciales
 en un archivo llamado "schema.sql" que se encuentra en el directorio src->main->resources.
