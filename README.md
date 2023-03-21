@@ -46,6 +46,8 @@ $ ./mvnw clean install
 $ ./mvnw spring-boot:run
 
 ```
+Al ejecutar el comando clean install se ejecutaran los test realizados y que son necesarios
+para la generación del artefacto de la aplicación.
 
 ## Pruebas
 ***
