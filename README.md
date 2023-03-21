@@ -3,7 +3,7 @@
 2. [Tecnología](#tecnologia)
 3. [Instalación](#instalacion)
 4. [Pruebas](#pruebas) 
-5. [Administracion Base de datos](#administracion_Base_de_datos)
+5. [Administración Base de datos](#administracion-base-de-datos)
 
 ## Informacion General
 ***
