@@ -15,7 +15,7 @@ la acción de registrarse en una plataforma.
 Las tecnologías usadas en el proyecto son:
 * Java 11
 * Maven
-* Spring-Boot
+* Spring-Boot con tomcat embebido
 * Postman
 
 ## Dependencias
@@ -37,15 +37,16 @@ Descargar proyecto desde repositorio
 $ git clone https://github.com/emirandalutz/technical_test
 
 ```
-Una vez descargado el proyecto y posicionandonos en el carpeta raíz ejecutamos los comandos en el siguiente
+Una vez descargado el proyecto nos posicionamos en la carpeta raíz y ejecutamos los comandos en el siguiente
 orden en el terminal a elección, para efectos de este manual fue utilizado git bash.
 
 ```
-$ mvn clean install
+$ ./mvnw clean install
 
-$ mvn spring-boot:run
+$ ./mvnw spring-boot:run
 
 ```
+
 ## Pruebas
 ***
 En postman generamos un request de tipo POST a la siguiente URL:
@@ -114,7 +115,7 @@ La API entregara un resultado en JSON que podra ser consumido si es necesario.
 }
 ```
 ##  Bonus
-
+***
 ### Carga de base de datos H2
 
 Para la creación de la base de datos y sus tablas se han dispuesto los script iniciales
@@ -122,7 +123,7 @@ en un archivo llamado "schema.sql" que se encuentra en el directorio src->main->
 
 ![Propiedad de BD H2](https://github.com/emirandalutz/technical_test/blob/main/src/main/resources/static/properties_bd.jpg)
 
-Este script es ejecutado al iniciar la aplicación.
+Este script es ejecutado al iniciar la aplicación de forma automática.
 
 ### Conexión a consola de administración de base de datos
 

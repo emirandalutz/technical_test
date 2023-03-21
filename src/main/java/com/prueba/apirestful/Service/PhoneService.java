@@ -2,7 +2,6 @@ package com.prueba.apirestful.Service;
 
 import com.prueba.apirestful.Entity.Phone;
 import com.prueba.apirestful.Entity.User;
-import com.prueba.apirestful.Exception.ServiceException;
 import com.prueba.apirestful.Repository.PhoneRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -20,7 +19,7 @@ public class PhoneService implements IPhoneService {
 
     @Override
     public boolean registerPhones(User userId, List<Phone> phoneList) {
-        try {
+        if(null != userId && null !=phoneList) {
             phoneList.stream().forEach(phone -> {
                 Phone phoneRelation = new Phone();
                 BeanUtils.copyProperties(phone, phoneRelation);
@@ -28,7 +27,7 @@ public class PhoneService implements IPhoneService {
                 phoneRepository.save(phoneRelation);
             });
             return true;
-        } catch (ServiceException ex) {
+        } else {
             return false;
         }
     }

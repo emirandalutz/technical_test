@@ -1,5 +1,6 @@
 package com.prueba.apirestful.Service;
 
+import com.prueba.apirestful.Config.ResourceProperties;
 import com.prueba.apirestful.Entity.User;
 import com.prueba.apirestful.Exception.ServiceException;
 import com.prueba.apirestful.Repository.UserRepository;
@@ -7,7 +8,6 @@ import com.prueba.apirestful.Request.Response;
 import com.prueba.apirestful.Util.Constants;
 import com.prueba.apirestful.Util.JwtUtil;
 import com.prueba.apirestful.Util.PasswordUtil;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +18,8 @@ import java.util.regex.Pattern;
 
 @Service
 public class UserService implements IUserService {
-    @Value("${email.regexp}")
-    private String emailRegexp;
 
-    @Value("${password.regexp}")
-    private String passwordRegexp;
-
+    private ResourceProperties resourceProperties;
     private UserRepository userRepository;
 
     private IPhoneService phoneService;
@@ -34,21 +30,22 @@ public class UserService implements IUserService {
 
     private PasswordUtil passwordUtil;
 
-    public UserService(UserRepository userRepository, IPhoneService phoneService, ITokenService tokenService, JwtUtil jwtUtil, PasswordUtil passwordUtil) {
+    public UserService(UserRepository userRepository, IPhoneService phoneService, ITokenService tokenService, JwtUtil jwtUtil, PasswordUtil passwordUtil,ResourceProperties resourceProperties) {
         this.userRepository = userRepository;
         this.phoneService = phoneService;
         this.tokenService = tokenService;
         this.jwtUtil = jwtUtil;
         this.passwordUtil = passwordUtil;
+        this.resourceProperties = resourceProperties;
     }
 
     @Override
     public Response registerUser(User user) {
 
-        if (!validField(passwordRegexp,user.getPassword())) {
+        if (!validField(resourceProperties.getPasswordRegexp(),user.getPassword())) {
             throw new IllegalArgumentException(Constants.ERROR_PASSWORD);
         }
-        if (!validField(emailRegexp, user.getEmail())) {
+        if (!validField(resourceProperties.getEmailRegexp(), user.getEmail())) {
             throw new IllegalArgumentException(Constants.ERROR_EMAIL);
         }
         if (existsByEmail(user.getEmail())) {
@@ -86,6 +83,7 @@ public class UserService implements IUserService {
         }
     }
     private boolean validField(String regexp, String input) {
+
         Pattern pattern = Pattern.compile(regexp);
         Matcher matcher = pattern.matcher(input);
 
