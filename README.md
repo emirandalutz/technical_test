@@ -1,7 +1,7 @@
 ## Contenido
 1. [Información General](#informacion-general)
-2. [Tecnología](#tecnologia)
-3. [Instalación](#instalacion)
+2. [Tecnología](#tecnologías)
+3. [Instalación](#instalación)
 4. [Pruebas](#pruebas) 
 5. [Administración Base de datos](#administracion-base-de-datos)
 
