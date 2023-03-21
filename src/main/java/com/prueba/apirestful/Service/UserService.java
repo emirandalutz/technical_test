@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Service
 public class UserService implements IUserService {
@@ -30,7 +28,7 @@ public class UserService implements IUserService {
 
     private PasswordUtil passwordUtil;
 
-    public UserService(UserRepository userRepository, IPhoneService phoneService, ITokenService tokenService, JwtUtil jwtUtil, PasswordUtil passwordUtil,ResourceProperties resourceProperties) {
+    public UserService(UserRepository userRepository, IPhoneService phoneService, ITokenService tokenService, JwtUtil jwtUtil, PasswordUtil passwordUtil, ResourceProperties resourceProperties) {
         this.userRepository = userRepository;
         this.phoneService = phoneService;
         this.tokenService = tokenService;
@@ -42,10 +40,10 @@ public class UserService implements IUserService {
     @Override
     public Response registerUser(User user) {
 
-        if (!validField(resourceProperties.getPasswordRegexp(),user.getPassword())) {
+        if (!resourceProperties.validFieldPassword(user.getPassword())) {
             throw new IllegalArgumentException(Constants.ERROR_PASSWORD);
         }
-        if (!validField(resourceProperties.getEmailRegexp(), user.getEmail())) {
+        if (!resourceProperties.validFieldEmail(user.getEmail())) {
             throw new IllegalArgumentException(Constants.ERROR_EMAIL);
         }
         if (existsByEmail(user.getEmail())) {
@@ -64,15 +62,9 @@ public class UserService implements IUserService {
                 throw new ServiceException(Constants.ERROR_PHONE_SAVE);
             }
 
-            LocalDateTime date = LocalDateTime.now();
-            responseRequest.setId(Uuid);
-            responseRequest.setCreated(date);
-            responseRequest.setModified(date);
-            responseRequest.setLast_login(date);
-            responseRequest.setToken(jwtUtil.generateTokenJwt(user));
-            responseRequest.setActive(true);
+            responseRequest = generateResponse(user, Uuid);
 
-            boolean result2 = tokenService.registerUserToken(Uuid,responseRequest.getToken());
+            boolean result2 = tokenService.registerUserToken(user.getUserId(), responseRequest.getToken());
             if (!result2) {
                 throw new ServiceException(Constants.ERROR_TOKEN_SAVE);
             }
@@ -82,13 +74,19 @@ public class UserService implements IUserService {
             throw new ServiceException(Constants.ERROR_INTERNO);
         }
     }
-    private boolean validField(String regexp, String input) {
 
-        Pattern pattern = Pattern.compile(regexp);
-        Matcher matcher = pattern.matcher(input);
+    private Response generateResponse(User user, String Uuid) {
+        Response responseRequest = new Response();
+        String tokenJwt = jwtUtil.generateTokenJwt(user);
+        LocalDateTime date = LocalDateTime.now();
+        responseRequest.setId(Uuid);
+        responseRequest.setCreated(date);
+        responseRequest.setModified(date);
+        responseRequest.setLast_login(date);
+        responseRequest.setToken(tokenJwt);
+        responseRequest.setActive(true);
 
-        boolean resp = matcher.matches();
-        return resp;
+        return responseRequest;
     }
 
     private boolean existsByEmail(String email) {
