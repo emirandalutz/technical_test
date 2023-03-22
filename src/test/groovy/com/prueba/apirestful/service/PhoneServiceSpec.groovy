@@ -1,4 +1,4 @@
-package com.prueba.apirestful.servicio
+package com.prueba.apirestful.service
 
 import com.prueba.apirestful.Entity.Phone
 import com.prueba.apirestful.Entity.User

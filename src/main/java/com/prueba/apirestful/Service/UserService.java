@@ -52,7 +52,7 @@ public class UserService implements IUserService {
         try {
             String Uuid = UUID.randomUUID().toString();
             user.setUserId(Uuid);
-            Response responseRequest = new Response();
+            Response responseRequest;
             String passwordEncode = passwordUtil.passwordEncoder().encode(user.getPassword());
             user.setPassword(passwordEncode);
             userRepository.save(user);

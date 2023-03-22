@@ -1,6 +1,8 @@
 package com.prueba.apirestful.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,7 @@ public class Phone {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User userId;
 
     private String number;

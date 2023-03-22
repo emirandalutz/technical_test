@@ -1,19 +1,16 @@
-package com.prueba.apirestful.servicio
+package com.prueba.apirestful.service
 
 import com.prueba.apirestful.Config.ResourceProperties
 import com.prueba.apirestful.Entity.Phone
 import com.prueba.apirestful.Entity.User
 import com.prueba.apirestful.Exception.ServiceException
 import com.prueba.apirestful.Repository.UserRepository
-import com.prueba.apirestful.Request.Response
 import com.prueba.apirestful.Service.IPhoneService
 import com.prueba.apirestful.Service.ITokenService
 import com.prueba.apirestful.Service.UserService
 import com.prueba.apirestful.Util.JwtUtil
 import com.prueba.apirestful.Util.PasswordUtil
 import spock.lang.Specification
-
-import java.time.LocalDateTime
 
 class UserServiceSpec extends Specification{
 

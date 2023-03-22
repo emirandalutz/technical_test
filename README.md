@@ -4,6 +4,7 @@
 3. [Instalación](#instalación)
 4. [Pruebas](#pruebas) 
 5. [Administración Base de datos](#administracion-base-de-datos)
+6. [Swagger](#swagger)
 
 ## Informacion General
 ***
@@ -116,6 +117,15 @@ La API entregara un resultado en JSON que podra ser consumido si es necesario.
     "active": true
 }
 ```
+## Swagger
+
+Aplicación tiene integrada Swagger, el cual permitira realizar pruebas en la interfaz web
+para verificar funcionamiento de aplicación. La url para acceder es:
+
+```
+http://localhost:8080/api-docs.html
+```
+
 ## Administracion Base de datos
 
 ### Carga de base de datos H2
